@@ -35,10 +35,15 @@ function getAllTxnFromUser(custId){
       //todo 2: filter out useless stuff like bills/transfer/etc tags, txns w/o location data, etc.
       const len = trans.length;
       console.log("Showing "+len+" transactions:\n");
+      var locationData = [];
+
       for(var i=0; i<len; i++){
-        console.log("Transaction occured at location "+trans[i].locationLatitude+", "+trans[i].locationLongitude+" with tags "+trans[i].categoryTags);
+        //console.log("Transaction occured at location "+trans[i].locationLatitude+", "+trans[i].locationLongitude+" with tags "+trans[i].categoryTags);
+        
+        var singleloc = JSON.parse("{\"locationLatitude\":"+trans[i].locationLatitude+", \"locationLongitude\":"+trans[i].locationLongitude+", \"categoryTags\":\""+trans[i].categoryTags+"\"}\n");
+        locationData.push(singleloc);
       }
-      
+      console.log(locationData);
     }, handleError)
 }
 
