@@ -19,6 +19,16 @@ function options(method, uri, body = null) {
   };
 }
 
+function getAllTxnFromUser(custId){
+  req(options(GET, "customers/"+custId+"/transactions"))
+    .then((resp) => {
+      const trans = resp.result;
+      //todo: get following from transaction data:
+      //latitude, longitude, tag
+      console.log("Transaction occured at location "+trans.locationLatitude+", "+trans.locationLongitude+" with tags "+trans.categoryTags);
+    }, handleError)
+}
+/*
 (async () => {
   await req(options('GET', 'customers/' + initialCustomerId))
     .then((resp) => {
@@ -124,6 +134,7 @@ function options(method, uri, body = null) {
       console.log("\nReceipt from our money transfer: " + util.inspect(resp.result));
     }, handleError)
 })();
+*/
 
 function handleError(err) {
   let outErr = err;
