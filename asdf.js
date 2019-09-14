@@ -20,14 +20,29 @@ function options(method, uri, body = null) {
 }
 
 function getAllTxnFromUser(custId){
-  req(options(GET, "customers/"+custId+"/transactions"))
+  req(options("GET", "customers/"+custId+"/transactions"))
     .then((resp) => {
-      const trans = resp.result;
+      var trans = resp.result;
+      trans = trans.filter(function (e){
+        const excludeTypes = ["Income", "Transfer", "Bills and Utilities", "Taxes"];
+        return !(excludeTypes.includes(e.categoryTags)) &&
+               (typeof e.locationLatitude != "undefined") &&
+               (typeof e.locationLongitude != "undefined")
+
+      });
       //todo: get following from transaction data:
       //latitude, longitude, tag
-      console.log("Transaction occured at location "+trans.locationLatitude+", "+trans.locationLongitude+" with tags "+trans.categoryTags);
+      //todo 2: filter out useless stuff like bills/transfer/etc tags, txns w/o location data, etc.
+      const len = trans.length;
+      console.log("Showing "+len+" transactions:\n");
+      for(var i=0; i<len; i++){
+        console.log("Transaction occured at location "+trans[i].locationLatitude+", "+trans[i].locationLongitude+" with tags "+trans[i].categoryTags);
+      }
+      
     }, handleError)
 }
+
+getAllTxnFromUser(initialCustomerId);
 /*
 (async () => {
   await req(options('GET', 'customers/' + initialCustomerId))
