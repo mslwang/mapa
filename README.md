@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ # mαpα
 
-## Available Scripts
+A Hack the North 2019 Project
 
-In the project directory, you can run:
+![logo](https://raw.githubusercontent.com/mslwang/td-app/master/mapa_logo.PNG)
 
-### `npm start`
+Mapa is a tool created for aspiring entrepreneurs seeking to start their own businesses. It extracts data from tens of thousands of transactions which is categorized into different tags such as entertainment, shopping, food and dining, etc. This is then color-coded and plotted, allowing users to see a heatmap. Users can then use this information to find trends that can help them decide where they want to start their business.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## User Interface
+![Map](img_mapa.PNG)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* Different industries are categorized into different colors, making it easy for users to find specific tags.
+* Map can be dragged, zoomed just like Google maps. *After all, it **was** made using Google Maps API!*
 
-### `npm test`
+## Built With
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [Firebase](https://firebase.google.com/) - Web application development platform used
+* [TD-Da Vinci](https://td-davinci.com/) - Used to access millions of realistic virtual customers and their financial information
+* [Google Maps Platform](https://developers.google.com/maps/documentation/javascript/tutorial) - Used for map creation
 
-### `npm run build`
+## Authors
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Jack Bai, Johnny Leung, Matthew Wang, Kaiyi Zhu**
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+See also the list of [contributors](https://github.com/mslwang/td-app/contributors) who participated in this project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Acknowledgments
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* Thanks to Hack the North 2019 for providing us the opportunity to work on this project
