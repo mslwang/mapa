@@ -11,7 +11,7 @@ export default function About() {
                 <div style = {props}>
                     <div style = {aboutStyle}>
                         <h1>About</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at tellus nulla. Aliquam eget condimentum dui. Pellentesque mi justo, egestas sed feugiat vitae, dapibus ac arcu. Morbi eget sem vitae lorem consectetur pharetra. Ut magna justo, facilisis et tincidunt eget, condimentum et diam. Quisque tellus est, mollis et vulputate eget, porta convallis quam. Ut sed maximus massa, at suscipit diam. Curabitur placerat consequat nibh vel bibendum. Fusce auctor, tellus viverra sodales scelerisque, est arcu tincidunt lacus, non posuere nibh augue in sem. Praesent nunc libero, congue a tellus quis, consequat egestas tellus. Nullam eget ex justo.</p>
+                        <p>Mapa is a tool created for aspiring entrepreneurs seeking to start their own businesses. It extracts data from tens of thousands of transactions which is categorized into different tags such as entertainment, shopping, food and dining, etc. This is then color-coded and plotted, allowing users to see a heatmap. Users can then use this information to find trends that can help them decide where they want to start their business.</p>
                     </div> 
                 </div>
             )}       

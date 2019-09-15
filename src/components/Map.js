@@ -48,10 +48,10 @@ firebase.initializeApp(config);
 const db = firebase.firestore(); 
 
 db.collection("points").get().then(function(doc) {
-  console.log(doc.docs.map(doc => doc.data()));
-  console.log(doc)
+  //console.log(doc.docs.map(doc => doc.data()));
+  //console.log(doc)
   if (!doc.empty) {
-      console.log("Document data:", doc);
+      //console.log("Document data:", doc);
       //arr.push(doc.docs);
 
       tags = doc.docs[0].get("tags");
@@ -63,9 +63,9 @@ db.collection("points").get().then(function(doc) {
       lat = doc.docs[0].get("lat"); 
       localStorage.setItem("lat", JSON.stringify(lat));
 
-      console.log("Tags is " +tags);
-      console.log("Longitude is " +(long));
-      console.log("Latitude is " +lat);
+      //console.log("Tags is " +tags);
+      //console.log("Longitude is " +(long));
+      //console.log("Latitude is " +lat);
   } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -87,9 +87,9 @@ var heatmapData = {
 }
 
 for (var i in tags){
-    let newPoint = {lat: lat[i], lng: long[i]};
-    heatmapData.positions.push(newPoint);
-    console.log(newPoint);
+    //let newPoint = {lat: lat[i], lng: long[i]};
+    heatmapData.positions.push({lat: lat[i], lng: long[i]});
+    //console.log(newPoint);
 }
 
 
