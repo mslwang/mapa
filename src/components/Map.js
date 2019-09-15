@@ -8,28 +8,13 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 let tags = [];
 let lat = [];
 let long = [];
+var name = "all";
 
 var heatmapData = {
     positions: [],
     options: {   
     radius: 40,   
-    opacity: 0.6,
-    gradient: [
-        'rgba(0, 255, 255, 0)',
-        'rgba(0, 255, 255, 1)',
-        'rgba(0, 191, 255, 1)',
-        'rgba(0, 127, 255, 1)',
-        'rgba(0, 63, 255, 1)',
-        'rgba(0, 0, 255, 1)',
-        'rgba(0, 0, 223, 1)',
-        'rgba(0, 0, 191, 1)',
-        'rgba(0, 0, 159, 1)',
-        'rgba(0, 0, 127, 1)',
-        'rgba(63, 0, 91, 1)',
-        'rgba(127, 0, 63, 1)',
-        'rgba(191, 0, 31, 1)',
-        'rgba(255, 0, 0, 1)'
-      ]
+    opacity: 0.6
     }
 }
 
@@ -92,6 +77,17 @@ for (var i in tags){
     //console.log(newPoint);
 }
 
+function All(){
+    name = "all";
+}
+
+function FoodDining(){
+    name = "fooddining"
+}
+
+function Home(){
+    name = "home"
+}
 
 
 export default class Map extends Component {
@@ -108,7 +104,19 @@ export default class Map extends Component {
     render() {
         return (
             <div style = {paddingStyle}>
+
+
                 <h1>Map</h1>
+                {/*}
+                <button onClick = {this.onClick}>All</button>
+                <div class = "divider"/>
+                <button onClick = {this.onClick}>Food and Dining</button>
+                <div class = "divider"/>
+                <button onClick = {this.onClick}>Shopping</button>
+                <div class = "divider"/>
+                <button onClick = {this.onClick}>Kids Shopping</button>
+                <div class = "divider"/>
+                <button onClick = {this.onClick}>Auto and Transport</button>*/}
                 <div style = {mapStyle}>
                 {/*<button onClick = {toggleMap()}>Toggle Heatmap</button>*/}
                     {
