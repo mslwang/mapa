@@ -6,8 +6,8 @@ const req = require('request-promise-native'); // use Request library + promises
 //req.debug = true
 //require('request-debug')(req);
 
-const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiNjc3NTU3ZGEtOGY2My0zYTVjLThhNDktZjRmYzhiZjUwYjQyIiwiZXhwIjo5MjIzMzcyMDM2ODU0Nzc1LCJhcHBfaWQiOiJiOWZjYTBhOS03MGFiLTQ0YTEtYjQyNi1mZmU3MDIwZTM1MmUifQ.kFraAWFWj_J3OUhs1xODiFuDz7jbjHKwKHz9D2EJDHw";
-const initialCustomerId = "24a794a3-ea5b-4245-bd7a-eb8466f4eb7d";
+const apiKey = "GET YOUR API KEY FROM https://td-davinci.com/my-app";
+const initialCustomerId = "FIND A CUSTOMER AT https://td-davinci.com/virtual-users";
 
 function options(method, uri, body = null) {
   return {
@@ -18,6 +18,19 @@ function options(method, uri, body = null) {
     headers: { 'Authorization': apiKey }
   };
 }
+
+//this sounds like tail recursion needing to happen
+var users = [];
+function get1kCustomers(cont){
+  var postbody = JSON.parse("{\"continuationToken\": \""+cont+"\"}");
+  req(options("POST","raw-customer-data",postbody))
+    .then((resp)=>{
+      for(var i=0;i<1000;i++){
+      var singleuser = JSON.parse()
+      }
+    }, handleError)
+}
+get1kCustomers("");
 
 function getAllTxnFromUser(custId){
   req(options("GET", "customers/"+custId+"/transactions"))
@@ -46,8 +59,7 @@ function getAllTxnFromUser(custId){
       console.log(locationData);
     }, handleError)
 }
-
-getAllTxnFromUser(initialCustomerId);
+//getAllTxnFromUser(initialCustomerId);
 /*
 (async () => {
   await req(options('GET', 'customers/' + initialCustomerId))
@@ -154,7 +166,6 @@ getAllTxnFromUser(initialCustomerId);
       console.log("\nReceipt from our money transfer: " + util.inspect(resp.result));
     }, handleError)
 })();
-*/
 
 function handleError(err) {
   let outErr = err;
