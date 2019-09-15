@@ -6,7 +6,10 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import * as firebase from 'firebase';
 
-let arr = [];
+/*
+let tags = [];
+let lat = [];
+let long = [];
 
 var config = {
     apiKey: ***REMOVED***
@@ -22,13 +25,20 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore(); 
 
+/*
 db.collection("points").get().then(function(doc) {
   console.log(doc.docs.map(doc => doc.data()));
   console.log(doc)
-  if (doc.exists) {
+  if (!doc.empty) {
       console.log("Document data:", doc);
-      arr.push(doc.data());
-      console.log(arr.length);
+      //arr.push(doc.docs);
+
+      tags = doc.docs[2].get("tag");
+      long = doc.docs[2].get("longitude");
+      lat = doc.docs[2].get("latitude");
+
+      console.log("Doc data is " +tags);
+
   } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -36,6 +46,7 @@ db.collection("points").get().then(function(doc) {
 }).catch(function(error) {
   console.log("Error getting document:", error);
 });
+
 
 function test(name, state, country) {
   db.collection("points").doc("LA").set({
@@ -50,7 +61,7 @@ function test(name, state, country) {
 }
 
 test("Mexico", "Africa", "Denmark");
-
+*/
 ReactDOM.render(
     <Router>
       <App />  

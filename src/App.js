@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+
+
 import Navbar from './components/AppNavbar';
 import Home from './components/Home'
 import About from './components/About'
 import Map from './components/Map'
 import Section from './components/Section'
+
 
 
 class App extends Component {
