@@ -6,7 +6,8 @@ Mapa is a tool created for aspiring entrepreneurs seeking to start their own bus
 
 ## How to Use
 ![Map](img_mapa.PNG)
-Instructions here...
+
+* **Instructions here...
 
 ## Built With
 
