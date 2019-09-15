@@ -1,7 +1,10 @@
+//import * as firebase from 'firebase';
+//require('firebase/firestore');
+var firebase = require('firebase');
+
 // Run `npm init`, then `npm install request request-debug request-promise-native --save`
 "use strict";
-
-//var fs = require("fs")
+var fs = require("fs")
 const util = require('util') // for printing objects
 const req = require('request-promise-native'); // use Request library + promises to reduce lines of code
 //req.debug = true
@@ -9,7 +12,19 @@ const req = require('request-promise-native'); // use Request library + promises
 
 const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiNjc3NTU3ZGEtOGY2My0zYTVjLThhNDktZjRmYzhiZjUwYjQyIiwiZXhwIjo5MjIzMzcyMDM2ODU0Nzc1LCJhcHBfaWQiOiJiOWZjYTBhOS03MGFiLTQ0YTEtYjQyNi1mZmU3MDIwZTM1MmUifQ.kFraAWFWj_J3OUhs1xODiFuDz7jbjHKwKHz9D2EJDHw";
 const initialCustomerId = "24a794a3-ea5b-4245-bd7a-eb8466f4eb7d";
+var config = {
+  apiKey: "AIzaSyBKo669TN8weWWWOtrBIaya9lq2Dqotej0",
+  authDomain: "td-app-c4b43.firebaseapp.com",
+  databaseURL: "https://td-app-c4b43.firebaseio.com",
+  projectId: "td-app-c4b43",
+  storageBucket: "td-app-c4b43.appspot.com",
+  messagingSenderId: "649798001798",
+  appId: "1:649798001798:web:557fa094e4e0b8da0e1d07"
+}
 
+firebase.initializeApp(config);
+
+const db = firebase.firestore(); 
 function options(method, uri, body = null) {
   return {
     json: true,
@@ -83,7 +98,7 @@ async function getAllTxnFromUser(custId){
       for(var i=0; i<len; i++){
         //console.log("Transaction occured at location "+trans[i].locationLatitude+", "+trans[i].locationLongitude+" with tags "+trans[i].categoryTags);
         
-        var singleloc = JSON.parse("{\"locationLatitude\":"+trans[i].locationLatitude+", \"locationLongitude\":"+trans[i].locationLongitude+", \"categoryTags\":\""+trans[i].categoryTags+"\"}\n");
+        var singleloc = ("{\"locationLatitude\":"+trans[i].locationLatitude+", \"locationLongitude\":"+trans[i].locationLongitude+", \"categoryTags\":\""+trans[i].categoryTags+"\"}\n");
         locationData.push(singleloc);
       }
       return locationData;
@@ -95,13 +110,55 @@ getAllTxnFromUser(initialCustomerId);
 async function getAllTransactions(){
   let users = await get1kCustomers(""); //this is an array that we will work with 
   let transactions = [];
-  for(let i=0;i<1;i++){
+  for(let i=0;i<5;i++){
     transactions = transactions.concat(await getAllTxnFromUser(users[i]));
   }
-  return JSON.parse(transactions);
+  
+  
+  return ("{\"transactions\":["+transactions+"]}");
 }
-console.log(getAllTransactions());
+/*
+function upload(lat, lng, tags){
+  db.collection("points").doc("Info").set({
+    lat, lng, tags
+  })
+  .then(function() {
+    console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+    console.error("Error writing document: ", error);
+  });
+}
 
+let latitude1 = [];
+let longitude1 = [];
+let tags1 = [];
+*/
+async function printAllTransactions(){
+  let asdf = await getAllTransactions();
+  /*
+  for(let i=0; i<10; i++){
+    latitude1[i]= asdf.transactions[i].locationLatitude;
+    longitude1[i]= asdf.transactions[i].locationLongitude;
+    tags1[i]= asdf.transactions[i].categoryTags;
+  }
+  upload(latitude1, longitude1, tags1);*/
+  //console.log(asdf);
+  
+  fs.writeFile("output2.json",asdf,function(err) {
+    if (err) {
+       return console.error(err);
+    }});
+  };
+
+printAllTransactions();
+
+/*
+fs.open("output.json","w+",function(err, fd) {
+  if (err) {
+     return console.error(err);
+  }});
+*/
 //for(var i=0;i<1000;i++){
 //  getAllTxnFromUser(firstcusts[i]);
 //}
