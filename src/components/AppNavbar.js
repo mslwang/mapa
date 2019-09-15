@@ -12,6 +12,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap'
+import { Link, animateScroll as scroll } from 'react-scroll';
 
 
 export default class AppNavbar extends Component {
@@ -37,28 +38,27 @@ export default class AppNavbar extends Component {
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                   <NavItem>
-                    <NavLink href="/components/">About</NavLink>
+                    <Link
+                      activeClass="active"
+                      to="about"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration= {500}>
+                        <NavLink href="#">About</NavLink>
+                    </Link>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="https://github.com/reactstrap/reactstrap">Map</NavLink>
+                  <Link
+                      activeClass="active"
+                      to="map"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration= {500}>
+                      <NavLink href="#">Map</NavLink>
+                    </Link>
                   </NavItem>
-                  <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav caret>
-                      Options
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>
-                        Option 1
-                      </DropdownItem>
-                      <DropdownItem>
-                        Option 2
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem>
-                        Reset
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
                 </Nav>
               </Collapse>
             </Navbar>
