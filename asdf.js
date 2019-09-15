@@ -24,34 +24,46 @@ function options(method, uri, body = null) {
 function get1kCustomers(cont){
   
   var postbody = JSON.parse("{\"continuationToken\": \""+cont+"\"}");
-  req(options("POST","raw-customer-data",postbody))
+  return req(options("POST","raw-customer-data",postbody))
     .then((resp)=>{
 
-      var users = new Object();
+      var users = new Array();
 
       for(var i=0;i<1000;i++){
         var singleuser = resp.result.customers[i].id;
-        users.push(singleuser);
+        users[i]=singleuser;
       //users.push(resp.result.customers[i].id);
-      //console.log(resp.result.customers[i].id);
+      //console.log(resp.result.custreturn omers[i].id);
       }
       /*
       for(var i=0;i<1000;i++){
         console.log(users[i]);
       }*/
       //console.log(resp.result.customers);
-      return users;
+      //console.log(users);
+      return users.slice();
+      return new Promise( (resolve, reject)=> {
+          resolve("test");
+      })
+
+      resolve(users2);
     }, handleError);
-   
 }
-//get1kCustomers("");
-var firstcusts = get1kCustomers("");
+//get1kCustomers("")
+//var firstcusts = get1kCustomers("").then((result) => {
+//  console.log(result);
+//});
 //console.log(firstcusts);
 //console.log(users);
+async function test2(){
+  let users = await get1kCustomers("");
+  console.log(users);
+}
+//test2();
 
+async function getAllTxnFromUser(custId){
 
-function getAllTxnFromUser(custId){
-  req(options("GET", "customers/"+custId+"/transactions"))
+  return req(options("GET", "customers/"+custId+"/transactions"))
     .then((resp) => {
       var trans = resp.result;
       trans = trans.filter(function (e){
@@ -65,7 +77,7 @@ function getAllTxnFromUser(custId){
       //latitude, longitude, tag
       //todo 2: filter out useless stuff like bills/transfer/etc tags, txns w/o location data, etc.
       const len = trans.length;
-      console.log("Showing "+len+" transactions:\n");
+      //console.log("Showing "+len+" transactions:\n");
       var locationData = [];
 
       for(var i=0; i<len; i++){
@@ -74,12 +86,25 @@ function getAllTxnFromUser(custId){
         var singleloc = JSON.parse("{\"locationLatitude\":"+trans[i].locationLatitude+", \"locationLongitude\":"+trans[i].locationLongitude+", \"categoryTags\":\""+trans[i].categoryTags+"\"}\n");
         locationData.push(singleloc);
       }
-      console.log(locationData);
+      return locationData;
     }, handleError)
 }
-for(var i=0;i<1000;i++){
-  getAllTxnFromUser(firstcusts[i]);
+getAllTxnFromUser(initialCustomerId);
+
+
+async function getAllTransactions(){
+  let users = await get1kCustomers(""); //this is an array that we will work with 
+  let transactions = [];
+  for(let i=0;i<1;i++){
+    transactions = transactions.concat(await getAllTxnFromUser(users[i]));
+  }
+  return JSON.parse(transactions);
 }
+console.log(getAllTransactions());
+
+//for(var i=0;i<1000;i++){
+//  getAllTxnFromUser(firstcusts[i]);
+//}
 //getAllTxnFromUser(initialCustomerId);
 /*
 (async () => {
