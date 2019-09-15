@@ -2,7 +2,7 @@
 
 HTN 2019 Project
 
-Mapa is a tool created for aspiring entrepreneurs seeking to start their own businesses. It extracts data from tens of thousands of transactions which is categorized into different tags such as entertainment, shopping, food and dining, etc. These are then color-coded and plotted, allowing users to see a heatmap. 
+Mapa is a tool created for aspiring entrepreneurs seeking to start their own businesses. It extracts data from tens of thousands of transactions which is categorized into different tags such as entertainment, shopping, food and dining, etc. This is then color-coded and plotted, allowing users to see a heatmap. 
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+-----------------
 
 ```
 Give examples
