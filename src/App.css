@@ -19,6 +19,16 @@
   background-size: cover;
 }
 
+.divider{
+  width:2px;
+  height:auto;
+  display:inline-block;
+}
+
+button{
+  padding: 1%
+}
+
 body {
   font-family: 'Raleway', sans-serif;
   background: var(--mainWhite) !important;

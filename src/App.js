@@ -8,6 +8,7 @@ import Navbar from './components/AppNavbar';
 import Home from './components/Home'
 import About from './components/About'
 import Map from './components/Map'
+import FoodDiningMap from './components/FoodDiningMap'
 import Section from './components/Section'
 
 
@@ -29,6 +30,7 @@ class App extends Component {
           id = "map"
         />
         <Map></Map>
+        <FoodDiningMap></FoodDiningMap>
         <Switch>
         </Switch>
       </React.Fragment>
