@@ -1,13 +1,14 @@
 // Run `npm init`, then `npm install request request-debug request-promise-native --save`
 "use strict";
 
+//var fs = require("fs")
 const util = require('util') // for printing objects
 const req = require('request-promise-native'); // use Request library + promises to reduce lines of code
 //req.debug = true
 //require('request-debug')(req);
 
-const apiKey = "GET YOUR API KEY FROM https://td-davinci.com/my-app";
-const initialCustomerId = "FIND A CUSTOMER AT https://td-davinci.com/virtual-users";
+const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiNjc3NTU3ZGEtOGY2My0zYTVjLThhNDktZjRmYzhiZjUwYjQyIiwiZXhwIjo5MjIzMzcyMDM2ODU0Nzc1LCJhcHBfaWQiOiJiOWZjYTBhOS03MGFiLTQ0YTEtYjQyNi1mZmU3MDIwZTM1MmUifQ.kFraAWFWj_J3OUhs1xODiFuDz7jbjHKwKHz9D2EJDHw";
+const initialCustomerId = "24a794a3-ea5b-4245-bd7a-eb8466f4eb7d";
 
 function options(method, uri, body = null) {
   return {
@@ -20,17 +21,34 @@ function options(method, uri, body = null) {
 }
 
 //this sounds like tail recursion needing to happen
-var users = [];
 function get1kCustomers(cont){
+  
   var postbody = JSON.parse("{\"continuationToken\": \""+cont+"\"}");
   req(options("POST","raw-customer-data",postbody))
     .then((resp)=>{
+
+      var users = new Object();
+
       for(var i=0;i<1000;i++){
-      var singleuser = JSON.parse()
+        var singleuser = resp.result.customers[i].id;
+        users.push(singleuser);
+      //users.push(resp.result.customers[i].id);
+      //console.log(resp.result.customers[i].id);
       }
-    }, handleError)
+      /*
+      for(var i=0;i<1000;i++){
+        console.log(users[i]);
+      }*/
+      //console.log(resp.result.customers);
+      return users;
+    }, handleError);
+   
 }
-get1kCustomers("");
+//get1kCustomers("");
+var firstcusts = get1kCustomers("");
+//console.log(firstcusts);
+//console.log(users);
+
 
 function getAllTxnFromUser(custId){
   req(options("GET", "customers/"+custId+"/transactions"))
@@ -58,6 +76,9 @@ function getAllTxnFromUser(custId){
       }
       console.log(locationData);
     }, handleError)
+}
+for(var i=0;i<1000;i++){
+  getAllTxnFromUser(firstcusts[i]);
 }
 //getAllTxnFromUser(initialCustomerId);
 /*
@@ -166,7 +187,7 @@ function getAllTxnFromUser(custId){
       console.log("\nReceipt from our money transfer: " + util.inspect(resp.result));
     }, handleError)
 })();
-
+*/
 function handleError(err) {
   let outErr = err;
   if (err.response) {
