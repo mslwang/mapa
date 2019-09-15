@@ -1,4 +1,3 @@
-/* global google */
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import * as firebase from 'firebase';
@@ -9,6 +8,30 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 let tags = [];
 let lat = [];
 let long = [];
+
+var heatmapData = {
+    positions: [],
+    options: {   
+    radius: 40,   
+    opacity: 0.6,
+    gradient: [
+        'rgba(0, 255, 255, 0)',
+        'rgba(0, 255, 255, 1)',
+        'rgba(0, 191, 255, 1)',
+        'rgba(0, 127, 255, 1)',
+        'rgba(0, 63, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 223, 1)',
+        'rgba(0, 0, 191, 1)',
+        'rgba(0, 0, 159, 1)',
+        'rgba(0, 0, 127, 1)',
+        'rgba(63, 0, 91, 1)',
+        'rgba(127, 0, 63, 1)',
+        'rgba(191, 0, 31, 1)',
+        'rgba(255, 0, 0, 1)'
+      ]
+    }
+}
 
 var config = {
     apiKey: ***REMOVED***
@@ -32,11 +55,16 @@ db.collection("points").get().then(function(doc) {
       //arr.push(doc.docs);
 
       tags = doc.docs[0].get("tags");
+      localStorage.setItem("tags", JSON.stringify(tags));
+      
       long = doc.docs[0].get("lng");
-      lat = doc.docs[0].get("lat");
+      localStorage.setItem("long", JSON.stringify(long));
+      
+      lat = doc.docs[0].get("lat"); 
+      localStorage.setItem("lat", JSON.stringify(lat));
 
       console.log("Tags is " +tags);
-      console.log("Longitude is " +long);
+      console.log("Longitude is " +(long));
       console.log("Latitude is " +lat);
   } else {
       // doc.data() will be undefined in this case
@@ -46,6 +74,10 @@ db.collection("points").get().then(function(doc) {
   console.log("Error getting document:", error);
 });
 
+tags = JSON.parse(localStorage.getItem("tags"));
+long = JSON.parse(localStorage.getItem("long"));
+lat = JSON.parse(localStorage.getItem("lat"));
+
 var heatmapData = {
     positions: [],
     options: {   
@@ -54,20 +86,16 @@ var heatmapData = {
     }
 }
 
-console.log("Hi");
-
-
-let test1 = [49, 49];
-let test2 = [-78, -78];
-
-for(var i in tags) {
-    let newPoint = {lat: test1[i], lng: test2[i]};
+for (var i in tags){
+    let newPoint = {lat: lat[i], lng: long[i]};
     heatmapData.positions.push(newPoint);
-    console.log(lat[i] +" " +long[i]);
     console.log(newPoint);
 }
 
+
+
 export default class Map extends Component {
+    
     static defaultProps = {
         center: {
           lat: 43.6532,
