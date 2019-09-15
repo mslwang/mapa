@@ -12,9 +12,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap'
-import {Map} from '../components/Map'
 
-var element = document.getElementById(Map)
 
 export default class AppNavbar extends Component {
     constructor(props) {
