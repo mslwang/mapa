@@ -1,5 +1,7 @@
 # mαpα
 ![logo](https://raw.githubusercontent.com/mslwang/td-app/master/mapa_logo.PNG)
+
+
 A Hack the North 2019 Project
 
 Mapa is a tool created for aspiring entrepreneurs seeking to start their own businesses. It extracts data from tens of thousands of transactions which is categorized into different tags such as entertainment, shopping, food and dining, etc. This is then color-coded and plotted, allowing users to see a heatmap. Users can then use this information to find trends that can help them decide where they want to start their business.
