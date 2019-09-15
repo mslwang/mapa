@@ -8,7 +8,7 @@ Mapa is a tool created for aspiring entrepreneurs seeking to start their own bus
 ![Map](img_mapa.PNG)
 
 * Different industries are categorized into different colors, making it easy for users to find specific tags.
-* Map can be dragged, zoomed just like Google maps. After all, it was made using Google Maps API!
+* Map can be dragged, zoomed just like Google maps. *After all, it **was** made using Google Maps API!
 
 ## Built With
 
