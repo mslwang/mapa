@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import * as firebase from 'firebase';
+import googlemapkey from './config.json';
 
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -53,7 +54,7 @@ export default class Map extends Component {
                 {/*<button onClick = {toggleMap()}>Toggle Heatmap</button>*/}
                     {
                     <GoogleMapReact
-                    bootstrapURLKeys={{ key: '***REMOVED***'}}
+                    bootstrapURLKeys={{ key: googlemapkey }}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
                     heatmapLibrary={true}          

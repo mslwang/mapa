@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import * as firebase from 'firebase';
+import * as cfg from './config.json';
 
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -19,13 +20,13 @@ var heatmapData = {
 }
 
 var config = {
-    apiKey: ***REMOVED***
-    authDomain: ***REMOVED***
-    databaseURL: ***REMOVED***
-    projectId: ***REMOVED***
-    storageBucket: ***REMOVED***
-    messagingSenderId: ***REMOVED***
-    appId: ***REMOVED***
+    "apiKey": cfg.apiKey,
+    "authDomain": cfg.authDomain,
+    "databaseURL": cfg.databaseURL,
+    "projectId": cfg.projectId,
+    "storageBucket": cfg.storageBucket,
+    "messagingSenderId": cfg.messagingSenderId,
+    "appId": cfg.appId
 }
 
 firebase.initializeApp(config);
@@ -121,7 +122,7 @@ export default class Map extends Component {
                 {/*<button onClick = {toggleMap()}>Toggle Heatmap</button>*/}
                     {
                     <GoogleMapReact
-                    bootstrapURLKeys={{ key: '***REMOVED***'}}
+                    bootstrapURLKeys={{ key: cfg.googlemapkey}}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
                     heatmapLibrary={true}          
